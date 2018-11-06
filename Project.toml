@@ -1,0 +1,10 @@
+authors = ["Graham Stark <graham.stark@virtual-worlds.biz>"]
+name = "DDIMeta.jl"
+uuid = "e4f1305c-e1cb-11e8-237b-b194dfe31e34"
+version = "0.1.0"
+
+[deps]
+JDBC = "6042db11-3c3d-5e84-8dba-9cbf74c9ba48"
+DataStructures = "864edb3b-99cc-5e75-8d2d-829cb0a9cfe8"
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c"
+LightXML = "9c8b4983-aa76-5018-a973-4c85ecc9e179"
