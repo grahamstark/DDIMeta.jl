@@ -1,5 +1,5 @@
 authors = ["Graham Stark <graham.stark@virtual-worlds.biz>"]
-name = "DDIMeta.jl"
+name = "DDIMeta"
 uuid = "e4f1305c-e1cb-11e8-237b-b194dfe31e34"
 version = "0.1.0"
 
