@@ -26,22 +26,25 @@ function getconnection( dbinfo :: DBInfo  )
     JDBC.DriverManager.getConnection( connstr )
 end
 
-function loadvariablelist( dbinfo :: DBInfo, dataset :: AbstractString, table :: AbstractString ) :: VariableList
+function loadvariablelist( dbinfo :: DBInfo, dataset :: AbstractString, table :: AbstractString, year :: Integer  ) :: VariableList
 
     vl = VariableList()
 
     conn = getconnection( dbinfo )
 
     #                                            1   2      3              4     5     6    7       8            9          10    11
-    qps = JDBC.prepareStatement( conn, "select name,pos,measurement_level,label,vmin,vmax,question,instructions,vdecimals,valid,invalid from dictionaries.variables where dataset=? and tables=?" )
+    qps = JDBC.prepareStatement( conn, "select name,pos,measurement_level,label,vmin,vmax,question,instructions,vdecimals,valid,invalid from dictionaries.variables where dataset=? and tables=? and year=?" )
     #                                             1    2     3          4
-    eps = JDBC.prepareStatement( conn, "select value,label,enum_value,freq from dictionaries.enums where dataset=? and tables=? and variable_name=? order by value" )
+    eps = JDBC.prepareStatement( conn, "select value,label,enum_value,freq from dictionaries.enums where dataset=? and tables=? and variable_name=? and year=? order by value" )
 
     JDBC.setString( qps, 1, dataset )
     JDBC.setString( qps, 2, table )
+    JDBC.setInt( qps, 3, year )
+
     JDBC.setString( eps, 1, dataset )
     JDBC.setString( eps, 2, table )
 
+    JDBC.setInt( eps, 4, year )
 
     rs = JDBC.executeQuery( qps )
     for r in rs
@@ -69,7 +72,7 @@ function loadvariablelist( dbinfo :: DBInfo, dataset :: AbstractString, table ::
                  freq = getInt( e, 4 ) # not in UKDS
                  enum = EnumVal( value, label, enum_value, freq )
                  variable.enums[ value ] = enum
-                 println( "==== $value '$label' '$enum_value' " )
+                 # println( "==== $value '$label' '$enum_value' " )
            end
            sort!( variable.enums ) # unclear why I need this ..
            vl[ Symbol( name )] = variable
