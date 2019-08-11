@@ -26,7 +26,7 @@ function getconnection( dbinfo :: DBInfo  )
     JDBC.DriverManager.getConnection( connstr )
 end
 
-function loadvariablelist( dbinfo :: DBInfo, dataset :: AbstractString, table :: AbstractString )
+function loadvariablelist( dbinfo :: DBInfo, dataset :: AbstractString, table :: AbstractString ) :: VariableList
 
     vl = VariableList()
 
