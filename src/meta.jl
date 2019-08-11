@@ -34,6 +34,23 @@ end
 
 VariableList = OrderedDict{Symbol,Variable}
 
+function makedummyvar(
+    var              :: Variable,
+    include_values   :: Bool = false,
+    include_missings :: Bool = false ) :: AbstractString
+    s = "@enum ${var.name} begin\n"
+    for e in values(var.enums)
+        if(e.value > 0) or include_missingss
+        s *= "   ${e.enum_value}"
+        if include_values
+            s *= " = ${e.value}"
+        end
+        s *= "\n"
+    end
+    s *= "end\n"
+    s
+end
+
 "
 Add columns with
 returns an array of the new column names

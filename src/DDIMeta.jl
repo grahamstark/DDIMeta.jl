@@ -15,7 +15,7 @@ module DDIMeta.jl
 
     # meta stuff
     export EnumVal, EnumsDict, Variable, VariableList
-    export adddummies!, isprobablymissing
+    export adddummies!, isprobablymissing, makedummyvar
 
     # DDI XML parsing
     export parseddi
