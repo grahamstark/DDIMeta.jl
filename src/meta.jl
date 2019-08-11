@@ -34,20 +34,21 @@ end
 
 VariableList = OrderedDict{Symbol,Variable}
 
-function makedummyvar(
+function make_dummy_var(
     var              :: Variable,
     include_values   :: Bool = false,
     include_missings :: Bool = false ) :: AbstractString
-    s = "@enum ${var.name} begin\n"
+    s = "   @enum $(var.name) begin\n"
     for e in values(var.enums)
-        if(e.value > 0) or include_missingss
-        s *= "   ${e.enum_value}"
-        if include_values
-            s *= " = ${e.value}"
+        if( e.value > 0 ) || include_missings
+            s *= "      $(e.enum_value)"
+            if include_values
+                s *= " = $(e.value)"
+            end
+            s *= "\n"
         end
-        s *= "\n"
     end
-    s *= "end\n"
+    s *= "   end\n\n\n"
     s
 end
 

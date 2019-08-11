@@ -1,4 +1,4 @@
-module DDIMeta.jl
+module DDIMeta
 
     using JDBC
     using DataStructures
@@ -15,7 +15,7 @@ module DDIMeta.jl
 
     # meta stuff
     export EnumVal, EnumsDict, Variable, VariableList
-    export adddummies!, isprobablymissing, makedummyvar
+    export adddummies!, isprobablymissing, make_dummy_var
 
     # DDI XML parsing
     export parseddi
