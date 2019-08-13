@@ -15,7 +15,7 @@ module DDIMeta
 
     # meta stuff
     export EnumVal, EnumsDict, Variable, VariableList
-    export adddummies!, isprobablymissing, make_dummy_var
+    export adddummies!, isprobablymissing, make_enumerated_type
 
     # DDI XML parsing
     export parseddi

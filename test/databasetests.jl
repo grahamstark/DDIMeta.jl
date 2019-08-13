@@ -11,9 +11,13 @@ include( "../src/ddidao.jl")
   conn = init( "../etc/msc.ini")
   @test conn != nothing
 
-  vl :: VariableList = loadvariablelist( conn, "frs", "househol", 2015 )
-  @test length( vl )[1] > 0
+  hhv :: VariableList = loadvariablelist( conn, "frs", "househol", 2015 )
+  @test length( hhv )[1] > 0
+  adv :: VariableList = loadvariablelist( conn, "frs", "adult", 2015 )
+  @test length( adv )[1] > 0
   # println( vl )
-  println(  make_dummy_var( vl[:tentyp2], true ))
+  allv = merge( hhv, adv )
+  println(  make_enumerated_type( allv[:tentyp2], true, true ))
+  println(  make_enumerated_type( allv[:empstat], true, true ))
 
 end

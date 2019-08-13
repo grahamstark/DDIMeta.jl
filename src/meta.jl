@@ -34,7 +34,7 @@ end
 
 VariableList = OrderedDict{Symbol,Variable}
 
-function make_dummy_var(
+function make_enumerated_type(
     var              :: Variable,
     include_values   :: Bool = false,
     include_missings :: Bool = false ) :: AbstractString
