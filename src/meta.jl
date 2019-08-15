@@ -1,6 +1,4 @@
-#
-#
-#
+using Unicode
 
 struct EnumVal
     value :: Integer
@@ -38,7 +36,22 @@ function make_enumerated_type(
     var              :: Variable,
     include_values   :: Bool = false,
     include_missings :: Bool = false ) :: AbstractString
-    s = "   @enum $(var.name) begin\n"
+    capname = Unicode.titlecase( var.name )
+    el = length( var.enums )[1]
+    i = 1
+    s = "   export $capname\n   export"
+    for e in values(var.enums)
+        if( e.value > 0 ) || include_missings
+            s *= " $(e.enum_value)"
+            if i < el
+                s *= ","
+            end
+            i += 1
+        end
+    end
+    s *= "\n\n"
+
+    s *= "   @enum $capname begin\n"
     for e in values(var.enums)
         if( e.value > 0 ) || include_missings
             s *= "      $(e.enum_value)"
@@ -48,7 +61,7 @@ function make_enumerated_type(
             s *= "\n"
         end
     end
-    s *= "   end\n\n\n"
+    s *= "   end\n\n"
     s
 end
 

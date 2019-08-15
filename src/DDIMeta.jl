@@ -5,6 +5,7 @@ module DDIMeta
     using DataFrames
     using LightXML
     using IniFile
+    using Unicode
 
     # jdbc dao stuff for our UKDS meta database
     export getconnection, loadvariablelist, init, shutdown, DBInfo
