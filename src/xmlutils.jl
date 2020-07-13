@@ -15,7 +15,7 @@ function basiccensor( s :: AbstractString ) :: AbstractString
         if occursin( r"^[\d].*", s )
                 s = string("v_", s ) # leading digit
         end
-        s = replace( s,  r"__+"=> "_" )
+        s = replace( s,  r"__"=> "_" )
         s = replace( s, r"^_" => "" )
         s = replace( s, r"_$" => "" )
         return s

@@ -33,34 +33,53 @@ end
 VariableList = OrderedDict{Symbol,Variable}
 
 function make_enumerated_type(
+    enumname          :: AbstractString,
     var              :: Variable,
     include_values   :: Bool = false,
     include_missings :: Bool = false ) :: AbstractString
     capname = Unicode.titlecase( var.name )
     el = length( var.enums )[1]
     i = 1
-    s = "   export $capname\n   export"
+    s = "   export $enumname  # mapped from $(var.name)\n   export"
+    some_missing = false
     for e in values(var.enums)
         if( e.value > 0 ) || include_missings
-            s *= " $(e.enum_value)"
+            val = replace( e.enum_value,  r"__"=> "_" ) # hack because I've allowed dup '__' in the DB version
+            s *= " $(val)"
             if i < el
                 s *= ","
             end
             i += 1
         end
+        if e.value < 0
+            some_missing = true
+        end
     end
-    s *= "\n\n"
 
-    s *= "   @enum $capname begin\n"
+    s *= "\n"
+    add_missing = (! some_missing) && include_missings
+    if add_missing
+        s *= "   export Missing_$enumname\n"
+    end
+    s *= "\n"
+    s *= "   @enum $enumname begin  # mapped from $(var.name)\n"
+    if add_missing
+        s *= "      Missing_$enumname"
+        if include_values
+            s *= " = -1\n"
+        end
+    end
     for e in values(var.enums)
         if( e.value > 0 ) || include_missings
-            s *= "      $(e.enum_value)"
+            val = replace( e.enum_value,  r"__"=> "_" )
+            s *= "      $val"
             if include_values
                 s *= " = $(e.value)"
             end
             s *= "\n"
         end
     end
+
     s *= "   end\n\n"
     s
 end
