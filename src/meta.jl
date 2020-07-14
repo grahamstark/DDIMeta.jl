@@ -88,9 +88,13 @@ end
 Add columns with
 returns an array of the new column names
 "
-function adddummies!( df :: DataFrame, var :: Variable ) :: Array{Symbol,1}
+function adddummies!( df :: DataFrame, var :: Variable, alias :: String="" ) :: Array{Symbol,1}
     n  = size( df, 1 )
-    vs = Symbol( var.name )
+    if alias != ""
+        vs = Symbol( alias )
+    else
+        vs = Symbol( var.name )
+    end
     newcols = Array{Symbol,1}()
     for e in values(var.enums)
         if ! isprobablymissing( e )
