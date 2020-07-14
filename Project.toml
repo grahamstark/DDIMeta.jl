@@ -1,7 +1,7 @@
 name = "DDIMeta"
 uuid = "e4f1305c-e1cb-11e8-237b-b194dfe31e34"
 authors = ["Graham Stark <graham.stark@virtual-worlds.biz>"]
-version = "0.1.0"
+version = "0.1.1"
 
 [deps]
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
