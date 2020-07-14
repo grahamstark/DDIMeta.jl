@@ -2,7 +2,7 @@ const varstmt = "select name,pos,measurement_level,label,vmin,vmax,question,inst
 const enumstmt = "select value,label,enum_value,freq from dictionaries.enums where dataset=\$1 and tables=\$2 and variable_name=\$3 and year=\$4 order by value"
 
 
-function make_pg_connection_str( inifilename :: AbstractString )::String
+function make_connection_str( inifilename :: AbstractString )::String
     inifile = read( IniFile.Inifile(), inifilename )
     user = IniFile.get( inifile, "DB", "username")
     passwd = IniFile.get( inifile, "DB", "password")
@@ -14,12 +14,12 @@ function make_pg_connection_str( inifilename :: AbstractString )::String
     str
 end
 
-function getconnection( psqstr :: String ) :: LibPQ.Connection
+function get_connection( psqstr :: String ) :: LibPQ.Connection
     LibPQ.Connection( psqstr )
 end
 
 
-function loadvariablelist(
+function load_variable_list(
     connstr   :: AbstractString,
     dataset   :: AbstractString,
     tablename :: AbstractString,
@@ -46,5 +46,6 @@ function loadvariablelist(
              enums );
         vl[Symbol(row.name)] = variable
     end
+    LibPQ.close( conn )
     return vl
 end

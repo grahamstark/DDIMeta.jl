@@ -127,23 +127,11 @@ git-tree-sha1 = "a3f24677c21f5bbe9d2a714f95dcd58337fb2856"
 uuid = "82899510-4779-5014-852e-03e436cf321d"
 version = "1.0.0"
 
-[[JDBC]]
-deps = ["Dates", "JavaCall", "Tables"]
-git-tree-sha1 = "64e5bdfde946257ddf9be6d8c35fbfc11c37df22"
-uuid = "6042db11-3c3d-5e84-8dba-9cbf74c9ba48"
-version = "0.5.0"
-
 [[JSON]]
 deps = ["Dates", "Mmap", "Parsers", "Unicode"]
 git-tree-sha1 = "b34d7cef7b337321e97d22242c3c2b91f476748e"
 uuid = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
 version = "0.21.0"
-
-[[JavaCall]]
-deps = ["DataStructures", "Dates", "Libdl", "Test", "WinReg"]
-git-tree-sha1 = "63774daf708acbd5d0f1d34013cb1855f290565b"
-uuid = "494afd89-becb-516b-aafa-70d2670c0337"
-version = "0.7.4"
 
 [[LayerDicts]]
 git-tree-sha1 = "6087ad3521d6278ebe5c27ae55e7bbb15ca312cb"
@@ -335,12 +323,6 @@ uuid = "cf7118a7-6976-5b1a-9a39-7adc72f591a4"
 
 [[Unicode]]
 uuid = "4ec0a83e-493e-50e2-b9ac-8f72acf5a8f5"
-
-[[WinReg]]
-deps = ["Test"]
-git-tree-sha1 = "808380e0a0483e134081cc54150be4177959b5f4"
-uuid = "1b915085-20d7-51cf-bf83-8f477d6f5128"
-version = "0.3.1"
 
 [[XML2_jll]]
 deps = ["Libdl", "Libiconv_jll", "Pkg", "Zlib_jll"]

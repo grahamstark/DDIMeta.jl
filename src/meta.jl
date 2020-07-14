@@ -33,7 +33,7 @@ end
 VariableList = OrderedDict{Symbol,Variable}
 
 function make_enumerated_type(
-    enumname          :: AbstractString,
+    enumname         :: AbstractString,
     var              :: Variable,
     include_values   :: Bool = false,
     include_missings :: Bool = false ) :: AbstractString

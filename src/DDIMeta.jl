@@ -1,6 +1,5 @@
 module DDIMeta
 
-    using JDBC
     using DataStructures
     using DataFrames
     using LightXML
@@ -9,7 +8,7 @@ module DDIMeta
     using LibPQ
 
     # jdbc dao stuff for our UKDS meta database
-    export getconnection, loadvariablelist, init, shutdown, DBInfo
+    export get_connection, load_variable_list, make_connection_str
 
     # XML utilities
     export basiccensor, getIntAttr, getStrContent, getIntContent
@@ -24,7 +23,8 @@ module DDIMeta
 
     include( "meta.jl" )
     include( "xmlutils.jl")
-    include( "jdbcdao.jl" )
+    # include( "jdbcdao.jl" )
     include( "ddidao.jl" )
+    include( "psqdao")
 
 end # module
