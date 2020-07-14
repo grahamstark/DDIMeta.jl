@@ -1,11 +1,15 @@
-authors = ["Graham Stark <graham.stark@virtual-worlds.biz>"]
 name = "DDIMeta"
 uuid = "e4f1305c-e1cb-11e8-237b-b194dfe31e34"
+authors = ["Graham Stark <graham.stark@virtual-worlds.biz>"]
 version = "0.1.0"
 
 [deps]
-JDBC = "6042db11-3c3d-5e84-8dba-9cbf74c9ba48"
-DataStructures = "864edb3b-99cc-5e75-8d2d-829cb0a9cfe8"
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
-LightXML = "9c8b4983-aa76-5018-a973-4c85ecc9e179"
+DataStructures = "864edb3b-99cc-5e75-8d2d-829cb0a9cfe8"
 IniFile = "83e8ac13-25f8-5344-8a64-a9f2b223428f"
+JDBC = "6042db11-3c3d-5e84-8dba-9cbf74c9ba48"
+LibPQ = "194296ae-ab2e-5f79-8cd4-7183a0a5a0d1"
+LightXML = "9c8b4983-aa76-5018-a973-4c85ecc9e179"
+Tables = "bd369af6-aec1-5ad0-b16a-f7cc5008161c"
+
+# versions!

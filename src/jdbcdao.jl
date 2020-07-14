@@ -8,6 +8,20 @@ struct DBInfo
     server     :: String
 end
 
+function make_pg_connection_str( inifilename :: AbstractString )::String
+    inifile = read( IniFile.Inifile(), inifilename )
+    user = IniFile.get( inifile, "DB", "username")
+    passwd = IniFile.get( inifile, "DB", "password")
+    db = IniFile.get( inifile, "DB", "database")
+    server = IniFile.get( inifile, "DB", "server")
+    # note we ignore password
+    # local and trust turned on -
+    str = "postgresql://$(user)@$(server)/$(db)"
+    str
+end
+
+
+
 function init( inifilename :: AbstractString ) :: DBInfo
     inifile = read( IniFile.Inifile(), inifilename )
     dbinf = DBInfo(
