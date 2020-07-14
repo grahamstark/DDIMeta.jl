@@ -4,7 +4,6 @@ using StatFiles
 include( "../src/metaincludes.jl")
 include( "../src/xmlutils.jl")
 include( "../src/meta.jl")
-include( "../src/jdbcdao.jl")
 include( "../src/ddidao.jl")
 
 @testset "Tests of hacking a dataframe using WB/ScotSoc data" begin

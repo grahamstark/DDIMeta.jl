@@ -9,8 +9,6 @@ struct DBInfo
 end
 
 
-function loadvariablelist( dbinfo :: DBInfo, dataset :: AbstractString, table :: AbstractString, year :: Integer  ) :: VariableList
-
 function init( inifilename :: AbstractString ) :: DBInfo
     inifile = read( IniFile.Inifile(), inifilename )
     dbinf = DBInfo(

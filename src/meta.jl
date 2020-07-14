@@ -88,7 +88,7 @@ end
 Add columns with
 returns an array of the new column names
 "
-function adddummies!( df :: DataFrame, var :: Variable, alias :: String="" ) :: Array{Symbol,1}
+function adddummies!( df :: DataFrame, var :: Variable; alias :: String="", use_value_as_label = false, missings_to_zero = true ) :: Array{Symbol,1}
     n  = size( df, 1 )
     if alias != ""
         vs = Symbol( alias )
@@ -98,14 +98,22 @@ function adddummies!( df :: DataFrame, var :: Variable, alias :: String="" ) :: 
     newcols = Array{Symbol,1}()
     for e in values(var.enums)
         if ! isprobablymissing( e )
-            newsym = Symbol( vs,"_",e.enum_value )
+            if use_value_as_label
+                newsym = Symbol( lowercase( basiccensor( string( var.name,"_",e.value ))))
+            else
+                newsym = Symbol( lowercase( basiccensor( string( var.name ,"_",e.enum_value ))))
+            end
             println( "adding col $newsym")
-            df[newsym] = zeros( Union{Missing,Integer}, n )
+            if missings_to_zero
+                df[newsym] = zeros( Integer, n )
+            else
+                df[newsym] = zeros( Union{Missing,Integer}, n )
+            end
             for i in 1:n
-                if ismissing(df[vs][i])
-                    df[newsym][i] = missing
-                elseif df[vs][i] == e.value
-                    df[newsym][i] = 1
+                if ismissing(df[i,vs])
+                    df[i,newsym] = missing
+                elseif df[i,vs] == e.value
+                    df[i,newsym] = 1
                 end
             end
             push!( newcols, newsym )
