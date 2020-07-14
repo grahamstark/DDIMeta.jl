@@ -27,7 +27,7 @@ function load_variable_list(
 
     vl = VariableList()
 
-    conn = getconnection( connstr )
+    conn = get_connection( connstr )
 
     vr = LibPQ.execute( conn, varstmt, [dataset, tablename, year] )
     rows = Tables.rows( Tables.columntable( vr ))
