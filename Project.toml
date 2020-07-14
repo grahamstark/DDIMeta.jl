@@ -3,7 +3,6 @@ uuid = "e4f1305c-e1cb-11e8-237b-b194dfe31e34"
 authors = ["Graham Stark <graham.stark@virtual-worlds.biz>"]
 version = "0.1.1"
 
-
 [deps]
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 DataStructures = "864edb3b-99cc-5e75-8d2d-829cb0a9cfe8"
