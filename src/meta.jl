@@ -99,9 +99,9 @@ function adddummies!( df :: DataFrame, var :: Variable; alias :: String="", use_
     for e in values(var.enums)
         if ! isprobablymissing( e )
             if use_value_as_label
-                newsym = Symbol( lowercase( basiccensor( string( var.name,"_",e.value ))))
+                newsym = Symbol( lowercase( basiccensor( string( vs,"_",e.value ))))
             else
-                newsym = Symbol( lowercase( basiccensor( string( var.name ,"_",e.enum_value ))))
+                newsym = Symbol( lowercase( basiccensor( string( vs ,"_",e.enum_value ))))
             end
             println( "adding col $newsym")
             if missings_to_zero
@@ -111,7 +111,7 @@ function adddummies!( df :: DataFrame, var :: Variable; alias :: String="", use_
             end
             for i in 1:n
                 if ismissing(df[i,vs])
-                    df[i,newsym] = missing
+                    df[i,newsym] = missings_to_zero ? 0 : missing
                 elseif df[i,vs] == e.value
                     df[i,newsym] = 1
                 end
