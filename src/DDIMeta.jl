@@ -25,6 +25,6 @@ module DDIMeta
     include( "xmlutils.jl")
     # include( "jdbcdao.jl" )
     include( "ddidao.jl" )
-    include( "psqdao")
+    include( "psqdao.jl")
 
 end # module
