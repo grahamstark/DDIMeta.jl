@@ -1,4 +1,4 @@
-const varstmt = "select name,pos,measurement_level,label,vmin,vmax,question,instructions,vdecimals,valid,invalid from dictionaries.variables where dataset=\$1 and tables=\$2 and year=\$3"
+const varstmt = "select name,pos,measurement_level,label from dictionaries.variables where dataset=\$1 and tables=\$2 and year=\$3"
 const enumstmt = "select value,label,enum_value,freq from dictionaries.enums where dataset=\$1 and tables=\$2 and variable_name=\$3 and year=\$4 order by value"
 
 
@@ -41,9 +41,7 @@ function load_variable_list(
             enums[ enval ] = enum
         end
         variable = Variable( row.name, row.pos, row.measurement_level, row.label,
-             row.vmin, row.vmax, row.question, row.instructions, row.vdecimals,
-             row.valid, row.invalid,
-             enums );
+             0, 0, "", "",  0, 0, 0, enums );
         vl[Symbol(row.name)] = variable
     end
     LibPQ.close( conn )
