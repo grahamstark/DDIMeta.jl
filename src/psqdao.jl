@@ -1,5 +1,5 @@
 const varstmt = "select name,pos,measurement_level,label from dictionaries.variables where dataset=\$1 and tables=\$2 and year=\$3"
-const enumstmt = "select value,label,enum_value,freq from dictionaries.enums where dataset=\$1 and tables=\$2 and variable_name=\$3 and year=\$4 order by value"
+const enumstmt = "select value,label,enum_value from dictionaries.enums where dataset=\$1 and tables=\$2 and variable_name=\$3 and year=\$4 order by value"
 
 
 function make_connection_str( inifilename :: AbstractString )::String
@@ -37,7 +37,7 @@ function load_variable_list(
         enumrows = Tables.rows( Tables.columntable( ve ))
         for erow in enumrows
             enval = parse(Int, erow.value )
-            enum = EnumVal( enval , erow.label, erow.enum_value, erow.freq )
+            enum = EnumVal( enval , erow.label, erow.enum_value, 0 )
             enums[ enval ] = enum
         end
         variable = Variable( row.name, row.pos, row.measurement_level, row.label,
